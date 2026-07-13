@@ -1,0 +1,44 @@
+{
+    "users": [
+        {
+            "username": "driver_vasyl",
+            "phone": "+380671112233",
+            "role": "Водій",
+            "rating": 5.0,
+            "ratings_count": 0
+        },
+        {
+            "username": "maryna_pass",
+            "phone": "+380934445566",
+            "role": "Пасажир",
+            "rating": 5.0,
+            "ratings_count": 0
+        },
+        {
+            "username": "vlados",
+            "phone": "123123131",
+            "role": "Пасажир",
+            "rating": 5.0,
+            "ratings_count": 0
+        },
+        {
+            "username": "vlad",
+            "phone": "123123123",
+            "role": "Водій",
+            "rating": 5.0,
+            "ratings_count": 1
+        }
+    ],
+    "orders": [
+        {
+            "order_id": "b6a8d9b5",
+            "passenger": "vlados",
+            "driver": "vlad",
+            "start_point": "вул. Хрещатик, 1",
+            "end_point": "Проспект Перемоги, 45",
+            "price": 120.0,
+            "tariff": "Економ",
+            "status": "Завершено"
+        }
+    ]
+}

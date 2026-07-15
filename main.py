@@ -174,8 +174,19 @@ if st.session_state.current_user and st.session_state.current_user.role == "Па
 # --- ЛОГІКА ВОДІЯ ---
 elif st.session_state.current_user and st.session_state.current_user.role == "Водій":
     st.header("👨‍✈️ Панель водія")
+
+        # --- СТАТИСТИКА ВОДІЯ ---
+        completed_orders = [o for o in db.orders if o.driver == st.session_state.current_user.username and o.status == "Виконано"]
+        total_earned = sum(o.price for o in completed_orders)
     
-    tab_active, tab_my = st.tabs(["🌎 Доступні замовлення", "🗂️ Моя поточна поїздка"])
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric(label="💰 Зароблено за зміну", value=f"{total_earned:.2f} грн")
+        with col2:
+            st.metric(label="✅ Виконано поїздок", value=len(completed_orders))
+        # ------------------------
+    
+        tab_active, tab_my = st.tabs(["🌐 Доступні замовлення", "📂 Моя поточна поїздка"])
     
     with tab_active:
         available_orders = [o for o in db.orders if o.status == "Очікує водія"]

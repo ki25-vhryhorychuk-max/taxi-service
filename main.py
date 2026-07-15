@@ -132,8 +132,11 @@ if st.session_state.current_user and st.session_state.current_user.role == "Па
         st.markdown(f"### 💰 Орієнтовна вартість: **{final_price:.2f} грн**")
     
     if st.button("🚀 Викликати таксі", use_container_width=True):
-        order = db.create_order(st.session_state.current_user.username, start_pt, end_pt, selected_tariff, round(final_price, 2))
-        st.success(f"🎉 Замовлення №{order.order_id} успішно створено! Шукаємо водія...")
+        if not start_pt.strip() or not end_pt.strip():
+            st.error("❌ Будь ласка, заповніть обидва поля: звідки і куди ви їдете!")
+        else:
+            order = db.create_order(st.session_state.current_user.username, start_pt, end_pt, selected_tariff, round(final_price, 2))
+            st.success(f"🚖 Замовлення №{order.order_id} успішно створено! Шукаємо водія...")
 
     st.write("---")
     my_orders = [o for o in db.orders if o.passenger == st.session_state.current_user.username]
